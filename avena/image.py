@@ -55,9 +55,9 @@ def _pil_save(img, filename):
 def save(img, filename, random=False):
     '''Save an image array and return its path.'''
     if random:
-        newfile = utils.rand_filename(file)
+        newfile = utils.rand_filename(filename)
     else:
-        newfile = file
+        newfile = filename
     np.normalize(img)
     uint8img = np.to_uint8(img)
     _pil_save(uint8img, newfile)
