@@ -41,7 +41,7 @@ def swap_rgb(img, rgb):
 def read(filename, dtype=_DEFAULT_DTYPE):
     '''Read an image file as an array.'''
     img = Image.open(filename)
-    img = utils.swap_rgb(img, _PIL_RGB)
+    img = swap_rgb(img, _PIL_RGB)
     arr = asarray(img, dtype=dtype)
     return arr
 
