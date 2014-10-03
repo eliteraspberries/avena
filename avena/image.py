@@ -28,21 +28,11 @@ def get_channels(img):
             yield img[:, :, i]
 
 
-def swap_rgb(img, rgb):
-    '''Swap the RBG channels of an image array.'''
-    if utils.depth(img) == 3 and not rgb == utils._PREFERRED_RGB:
-        rgb_inv = utils._invert_dict(rgb)
-        rgb_order = [rgb_inv[k] for k in [0, 1, 2]]
-        swap_indices = [utils._PREFERRED_RGB[k] for k in rgb_order]
-        img = img[:, :, swap_indices]
-    return img
-
-
 def read(filename, dtype=_DEFAULT_DTYPE):
     '''Read an image file as an array.'''
     img = Image.open(filename)
     arr = asarray(img, dtype=dtype)
-    arr = swap_rgb(arr, _PIL_RGB)
+    arr = utils.swap_rgb(arr, _PIL_RGB)
     return arr
 
 
