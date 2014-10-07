@@ -90,7 +90,7 @@ def _cv_to_array(im, dtype=None):
 def _array_to_cv(arr):
     '''Return a NumPy array as an OpenCV image object.
     '''
-    im_channels = utils.n_channels(arr)
+    im_channels = utils.depth(arr)
     swap = lambda x, y, z=1: (y, x)
     im_shape = swap(*arr.shape)
     im_size = arr.dtype.itemsize * im_channels * im_shape[0]
@@ -178,7 +178,7 @@ def get_frames(video_file=None,
             break
         if as_array:
             img = _cv_to_array(img, dtype=dtype)
-            utils.normalize(img)
+            np.normalize(img)
             img = utils.swap_rgb(img, _OCV_RGB)
         yield img
 
