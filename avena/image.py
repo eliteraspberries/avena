@@ -28,11 +28,13 @@ def get_channels(img):
             yield img[:, :, i]
 
 
-def read(filename, dtype=_DEFAULT_DTYPE):
+def read(filename, dtype=_DEFAULT_DTYPE, normalize=True):
     '''Read an image file as an array.'''
     img = Image.open(filename)
     arr = asarray(img, dtype=dtype)
     arr = utils.swap_rgb(arr, _PIL_RGB)
+    if normalize:
+        np.normalize(arr)
     return arr
 
 
