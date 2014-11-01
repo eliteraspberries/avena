@@ -42,7 +42,6 @@ def swap_rgb(img, rgb):
         rgb_order = [rgb_inv[k] for k in [0, 1, 2]]
         swap_indices = [_PREFERRED_RGB[k] for k in rgb_order]
         img = img[:, :, swap_indices]
-    return img
 
 
 if __name__ == '__main__':

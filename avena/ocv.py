@@ -179,7 +179,7 @@ def get_frames(video_file=None,
         if as_array:
             img = _cv_to_array(img, dtype=dtype)
             np.normalize(img)
-            img = utils.swap_rgb(img, _OCV_RGB)
+            utils.swap_rgb(img, _OCV_RGB)
         yield img
 
 
