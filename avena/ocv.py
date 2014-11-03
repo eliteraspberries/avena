@@ -90,6 +90,7 @@ def _cv_to_array(im, dtype=None):
 def _array_to_cv(arr):
     '''Return a NumPy array as an OpenCV image object.
     '''
+    utils.swap_rgb(arr, utils._PREFERRED_RGB, to=_OCV_RGB)
     im_channels = utils.depth(arr)
     swap = lambda x, y, z=1: (y, x)
     im_shape = swap(*arr.shape)
