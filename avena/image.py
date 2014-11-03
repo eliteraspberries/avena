@@ -32,7 +32,7 @@ def read(filename, dtype=_DEFAULT_DTYPE, normalize=True):
     '''Read an image file as an array.'''
     img = Image.open(filename)
     arr = asarray(img, dtype=dtype)
-    utils.swap_rgb(arr, _PIL_RGB)
+    utils.swap_rgb(arr, _PIL_RGB, to=utils._PREFERRED_RGB)
     if normalize:
         np.normalize(arr)
     return arr
@@ -50,6 +50,7 @@ def save(img, filename, random=False, ext=None):
         newfile = utils.rand_filename(filename, ext=ext)
     else:
         newfile = filename
+    utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
     np.normalize(img)
     uint8img = np.to_uint8(img)
     _pil_save(uint8img, newfile)
