@@ -77,13 +77,12 @@ def _cv_to_array(im, dtype=None):
     '''
     arr_data = im[:, :]
     arr_shape = (im.height, im.width, im.nChannels)
-    arr_dtype = np._np_dtypes[_cv_depths[im.depth]]
+    if dtype is None:
+        arr_dtype = np._np_dtypes[_cv_depths[im.depth]]
+    else:
+        arr_dtype = np._np_dtypes[dtype]
     arr = asarray(arr_data, dtype=arr_dtype)
     arr.shape = arr_shape
-    if not dtype:
-        return arr
-    dtype = np._np_dtypes[dtype]
-    arr = np.from_uint8(arr, dtype=dtype)
     return arr
 
 
