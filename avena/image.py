@@ -44,14 +44,15 @@ def _pil_save(img, filename):
     return
 
 
-def save(img, filename, random=False, ext=None):
+def save(img, filename, random=False, ext=None, normalize=False):
     '''Save an image array and return its path.'''
     if random:
         newfile = utils.rand_filename(filename, ext=ext)
     else:
         newfile = filename
     utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
-    np.normalize(img)
+    if normalize:
+        np.normalize(img)
     uint8img = np.to_uint8(img)
     _pil_save(uint8img, newfile)
     return newfile
