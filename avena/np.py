@@ -51,7 +51,8 @@ def normalize(array):
     min = mu - 3.0 * rho2
     max = mu + 3.0 * rho2
     array -= min
-    array /= max - min
+    if max - min > _eps:
+        array /= max - min
     return
 
 
