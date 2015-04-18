@@ -30,15 +30,21 @@ def __in_circle(a, b, r, coords):
         return 0.0
 
 
-def _zero_low_freq(array, radius):
+def _indices_array(array):
     m, n = array.shape[:2]
     indices = _array(
         [[(i, j) for j in range(n)] for i in range(m)],
         dtype=('f4,f4'),
     )
+    return indices
+
+
+def _high_pass_filter(array, radius):
+    m, n = array.shape[:2]
+    indices = _indices_array(array)
     _in_circle = partial(__in_circle, m // 2, n // 2, radius)
     _v_in_circle = _vectorize(_in_circle)
-    _multiply(array, _v_in_circle(indices), out=array)
+    return 1.0 - _v_in_circle(indices)
 
 
 def highpass(array, radius):
@@ -47,7 +53,8 @@ def highpass(array, radius):
     for i, c in enumerate(image.get_channels(array)):
         C = _rfft2(c)
         C = _fftshift(C)
-        _zero_low_freq(C, radius)
+        filter = _high_pass_filter(C, radius)
+        _multiply(C, filter, out=C)
         C = _ifftshift(C)
         c = _irfft2(C, s=c.shape)
         c = _real(c)
