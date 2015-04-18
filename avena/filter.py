@@ -11,7 +11,12 @@ from numpy import (
     real as _real,
     vectorize as _vectorize,
 )
-from numpy.fft import irfft2 as _irfft2, rfft2 as _rfft2
+from numpy.fft import (
+    fftshift as _fftshift,
+    ifftshift as _ifftshift,
+    irfft2 as _irfft2,
+    rfft2 as _rfft2,
+)
 
 from . import image, utils
 
@@ -41,7 +46,9 @@ def highpass(array, radius):
     z = _empty(array.shape, dtype=array.dtype)
     for i, c in enumerate(image.get_channels(array)):
         C = _rfft2(c)
+        C = _fftshift(C)
         _zero_low_freq(C, radius)
+        C = _ifftshift(C)
         c = _irfft2(C, s=c.shape)
         c = _real(c)
         if utils.depth(array) > 1:
