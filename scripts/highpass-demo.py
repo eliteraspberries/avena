@@ -3,7 +3,7 @@
 '''Apply a high-pass filter to an image.
 
 Usage:
-    highpass-demo.py <image> <pixels>
+    highpass-demo.py <image> <radius>
     highpass-demo.py -h | --help
 
 Options:
@@ -19,9 +19,9 @@ if __name__ == '__main__':
 
     arguments = docopt(__doc__)
     filename = arguments['<image>']
-    pixels = float(arguments['<pixels>'])
+    radius = float(arguments['<radius>'])
 
     img = image.read(filename, normalize=True)
-    highpass_img = filter.highpass(img, pixels, pixels)
+    highpass_img = filter.highpass(img, radius)
 
     print image.save(highpass_img, filename, random=True, normalize=True)
