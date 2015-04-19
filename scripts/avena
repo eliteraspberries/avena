@@ -3,6 +3,7 @@
 '''Avena - an image processing tool
 
 Usage:
+    avena filter (high|low) <radius> <image>...
     avena -h | --help
     avena -v | --version
 
@@ -14,7 +15,7 @@ Options:
 
 from docopt import docopt
 
-from avena import avena
+from avena import avena, filter, image
 
 
 long_version = 'Avena ' + avena.__version__
@@ -23,3 +24,13 @@ long_version = 'Avena ' + avena.__version__
 if __name__ == '__main__':
 
     arguments = docopt(__doc__, version=long_version)
+
+    if arguments['filter']:
+        radius = int(arguments['<radius>'])
+        for i in list(arguments['<image>']):
+            img = image.read(i)
+            if arguments['high']:
+                filtered_img = filter.highpass(img, radius)
+            elif arguments['low']:
+                filtered_img = filter.lowpass(img, radius)
+            print image.save(filtered_img, i, random=True, normalize=True)
