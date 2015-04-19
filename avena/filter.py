@@ -30,8 +30,8 @@ def __in_circle(a, b, r, coords):
         return 0.0
 
 
-def _indices_array(array):
-    m, n = array.shape[:2]
+def _indices_array(shape):
+    m, n = shape
     indices = _array(
         [[(i, j) for j in range(n)] for i in range(m)],
         dtype=('f4,f4'),
@@ -39,9 +39,9 @@ def _indices_array(array):
     return indices
 
 
-def _high_pass_filter(array, radius):
-    m, n = array.shape[:2]
-    indices = _indices_array(array)
+def _high_pass_filter(shape, radius):
+    m, n = shape
+    indices = _indices_array(shape)
     _in_circle = partial(__in_circle, m // 2, n // 2, radius)
     _v_in_circle = _vectorize(_in_circle)
     return 1.0 - _v_in_circle(indices)
