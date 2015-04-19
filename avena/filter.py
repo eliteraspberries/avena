@@ -39,21 +39,23 @@ def _indices_array(shape):
     return indices
 
 
-def _high_pass_filter(shape, radius):
+def _low_pass_filter(shape, radius):
     m, n = shape
     indices = _indices_array(shape)
     _in_circle = partial(__in_circle, m // 2, n // 2, radius)
     _v_in_circle = _vectorize(_in_circle)
-    return 1.0 - _v_in_circle(indices)
+    return _v_in_circle(indices)
 
 
-def highpass(array, radius):
-    '''Apply a 2D high-pass filter to an image array.'''
+def _high_pass_filter(shape, radius):
+    return 1.0 - _low_pass_filter(shape, radius)
+
+
+def _filter(array, filter):
     z = _empty(array.shape, dtype=array.dtype)
     for i, c in enumerate(image.get_channels(array)):
         C = _rfft2(c)
         C = _fftshift(C)
-        filter = _high_pass_filter(C, radius)
         _multiply(C, filter, out=C)
         C = _ifftshift(C)
         c = _irfft2(C, s=c.shape)
@@ -63,6 +65,20 @@ def highpass(array, radius):
         else:
             z = c
     return z
+
+
+def lowpass(array, radius):
+    '''Apply a 2D low-pass filter to an image array.'''
+    m, n = array.shape[:2]
+    rfilter = _low_pass_filter((m, (n + 1) // 2), radius)
+    return _filter(array, rfilter)
+
+
+def highpass(array, radius):
+    '''Apply a 2D high-pass filter to an image array.'''
+    m, n = array.shape[:2]
+    rfilter = _high_pass_filter((m, (n + 1) // 2), radius)
+    return _filter(array, rfilter)
 
 
 if __name__ == '__main__':
