@@ -67,17 +67,24 @@ def _filter(array, filter):
     return z
 
 
+def _rshape(shape):
+    m, n = shape
+    if n % 2 == 0:
+        return (m, (n // 2) + 1)
+    else:
+        return (m, (n + 1) // 2)
+
+
 def lowpass(array, radius):
     '''Apply a 2D low-pass filter to an image array.'''
-    m, n = array.shape[:2]
-    rfilter = _low_pass_filter((m, (n + 1) // 2), radius)
+    rfilter = _low_pass_filter(_rshape(array.shape[:2]), radius)
     return _filter(array, rfilter)
 
 
 def highpass(array, radius):
     '''Apply a 2D high-pass filter to an image array.'''
     m, n = array.shape[:2]
-    rfilter = _high_pass_filter((m, (n + 1) // 2), radius)
+    rfilter = _high_pass_filter(_rshape(array.shape[:2]), radius)
     return _filter(array, rfilter)
 
 
