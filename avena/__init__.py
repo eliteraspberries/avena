@@ -3,6 +3,7 @@ __all__ = [
     'flip',
     'image',
     'np',
+    'tile',
     'utils',
     'video',
 ]

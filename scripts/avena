@@ -5,6 +5,7 @@
 Usage:
     avena filter (high|low) <radius> <image>...
     avena flip (vertical|horizontal) <image>...
+    avena tile [--periodic] (9) <image>...
     avena -h | --help
     avena -v | --version
 
@@ -19,7 +20,7 @@ from __future__ import print_function
 from docopt import docopt
 
 from avena import avena, image
-from avena import filter, flip
+from avena import filter, flip, tile
 
 
 long_version = 'Avena ' + avena.__version__
@@ -53,3 +54,12 @@ if __name__ == '__main__':
         for filename, img in zip(files, images):
             flipped_img = flip_func(img)
             print(image.save(flipped_img, filename, random=True))
+
+    elif arguments['tile']:
+
+        if arguments['--periodic']:
+            if arguments['9']:
+                tile_func = tile.tile9_periodic
+        for filename, img in zip(files, images):
+            tiled_img = tile_func(img)
+            print(image.save(tiled_img, filename, random=True))
