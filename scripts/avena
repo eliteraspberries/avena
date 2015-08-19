@@ -30,6 +30,8 @@ if __name__ == '__main__':
     files = list(arguments['<image>'])
     images = (image.read(i) for i in arguments['<image>'])
 
+    image.SAVE_NORMALIZED = True
+
     if arguments['filter']:
 
         radius = int(arguments['<radius>'])
