@@ -3,7 +3,7 @@
 '''Read and write image files as NumPy arrays'''
 
 
-from numpy import asarray, float32
+from numpy import asarray, copy, float32
 from PIL import Image
 
 from . import np
@@ -51,10 +51,11 @@ def save(img, filename, random=False, ext=None, normalize=False):
     else:
         newfile = filename
     utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
+    save_img = copy(img)
     if normalize:
-        np.normalize(img)
-    np.clip(img, np._dtype_bounds[str(img.dtype)])
-    uint8img = np.to_uint8(img)
+        np.normalize(save_img)
+    np.clip(save_img, np._dtype_bounds[str(save_img.dtype)])
+    uint8img = np.to_uint8(save_img)
     _pil_save(uint8img, newfile)
     return newfile
 
