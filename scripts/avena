@@ -27,12 +27,15 @@ if __name__ == '__main__':
 
     arguments = docopt(__doc__, version=long_version)
 
+    files = list(arguments['<image>'])
+    images = (image.read(i) for i in arguments['<image>'])
+
     if arguments['filter']:
+
         radius = int(arguments['<radius>'])
-        for i in list(arguments['<image>']):
-            img = image.read(i)
+        for filename, img in zip(files, images):
             if arguments['high']:
                 filtered_img = filter.highpass(img, radius)
             elif arguments['low']:
                 filtered_img = filter.lowpass(img, radius)
-            print(image.save(filtered_img, i, random=True, normalize=True))
+            print(image.save(filtered_img, filename, random=True))
