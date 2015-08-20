@@ -14,7 +14,7 @@ def flip_vertical(img):
     '''Flip an image array vertically.'''
     return image.map_to_channels(
         _flip_vertical,
-        lambda (x, y): (x, y),
+        lambda shape: shape,
         img,
     )
 
@@ -27,7 +27,7 @@ def flip_horizontal(img):
     '''Flip an image array horizontally.'''
     return image.map_to_channels(
         _flip_horizontal,
-        lambda (x, y): (x, y),
+        lambda shape: shape,
         img,
     )
 

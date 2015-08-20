@@ -77,7 +77,7 @@ def lowpass(img, radius):
     '''Apply a 2D low-pass filter to an image array.'''
     return image.map_to_channels(
         partial(_lowpass, radius),
-        lambda (x, y): (x, y),
+        lambda shape: shape,
         img,
     )
 
@@ -91,7 +91,7 @@ def highpass(img, radius):
     '''Apply a 2D high-pass filter to an image array.'''
     return image.map_to_channels(
         partial(_highpass, radius),
-        lambda (x, y): (x, y),
+        lambda shape: shape,
         img,
     )
 
