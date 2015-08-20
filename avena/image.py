@@ -3,14 +3,18 @@
 '''Read and write image files as NumPy arrays'''
 
 
-from numpy import asarray, copy, float32
+from numpy import (
+    asarray as _asarray,
+    copy as _copy,
+    empty as _empty,
+    float32 as _float32,
+)
 from PIL import Image
 
-from . import np
-from . import utils
+from . import np, utils
 
 
-_DEFAULT_DTYPE = float32
+_DEFAULT_DTYPE = _float32
 
 _PIL_RGB = {
     'R': 0,
@@ -31,7 +35,7 @@ def get_channels(img):
 def read(filename, dtype=_DEFAULT_DTYPE, normalize=True):
     '''Read an image file as an array.'''
     img = Image.open(filename)
-    arr = asarray(img, dtype=dtype)
+    arr = _asarray(img, dtype=dtype)
     utils.swap_rgb(arr, _PIL_RGB, to=utils._PREFERRED_RGB)
     if normalize:
         np.normalize(arr)
@@ -54,7 +58,7 @@ def save(img, filename, random=False, ext=None, normalize=SAVE_NORMALIZED):
     else:
         newfile = filename
     utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
-    save_img = copy(img)
+    save_img = _copy(img)
     if normalize:
         np.normalize(save_img)
     np.clip(save_img, np._dtype_bounds[str(save_img.dtype)])

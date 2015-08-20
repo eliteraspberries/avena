@@ -1,9 +1,23 @@
 #!/usr/bin/env python
 
-from numpy import around, empty as _empty, mean, std
-from numpy import int8, int16, int32, int64
-from numpy import uint8, uint16, uint32, uint64
-from numpy import float32, float64
+from numpy import (
+    around as _around,
+    empty as _empty,
+    mean as _mean,
+    std as _std,
+)
+from numpy import (
+    int8 as _int8,
+    int16 as _int16,
+    int32 as _int32,
+    int64 as _int64,
+    uint8 as _uint8,
+    uint16 as _uint16,
+    uint32 as _uint32,
+    uint64 as _uint64,
+    float32 as _float32,
+    float64 as _float64,
+)
 from sys import float_info as _float_info
 
 
@@ -11,16 +25,16 @@ _eps = 10.0 * _float_info.epsilon
 
 # Map of NumPy array type strings to types
 _np_dtypes = {
-    'int8':     int8,
-    'int16':    int16,
-    'int32':    int32,
-    'int64':    int64,
-    'uint8':    uint8,
-    'uint16':   uint16,
-    'uint32':   uint32,
-    'uint64':   uint64,
-    'float32':  float32,
-    'float64':  float64,
+    'int8':     _int8,
+    'int16':    _int16,
+    'int32':    _int32,
+    'int64':    _int64,
+    'uint8':    _uint8,
+    'uint16':   _uint16,
+    'uint32':   _uint32,
+    'uint64':   _uint64,
+    'float32':  _float32,
+    'float64':  _float64,
 }
 
 
@@ -37,8 +51,8 @@ def from_uint8(array, dtype):
 
 
 def to_uint8(array):
-    uint8_array = _empty(array.shape, dtype=uint8)
-    around(array * 255, out=uint8_array)
+    uint8_array = _empty(array.shape, dtype=_uint8)
+    _around(array * 255, out=uint8_array)
     return uint8_array
 
 
@@ -54,8 +68,8 @@ def clip(array, bounds):
 
 def normalize(array):
     '''Normalize an array to the interval [0,1].'''
-    mu = mean(array)
-    rho2 = std(array)
+    mu = _mean(array)
+    rho2 = _std(array)
     min = mu - 3.0 * rho2
     max = mu + 3.0 * rho2
     array -= min

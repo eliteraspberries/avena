@@ -3,13 +3,9 @@
 '''2D array tiling'''
 
 
-from numpy import (
-    empty as _empty,
-    zeros as _zeros,
-)
+from numpy import zeros as _zeros
 
-from . import image, utils
-from . import flip
+from . import flip, image
 
 
 def _tile9_periodic_shape(shape):

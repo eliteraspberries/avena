@@ -4,11 +4,10 @@
 
 
 from cv2 import cv
-from numpy import asarray
+from numpy import asarray as _asarray
 from os.path import exists as _exists
 
-from . import np
-from . import utils
+from . import np, utils
 
 
 # Map of OpenCV image depths to NumPy array types
@@ -81,7 +80,7 @@ def _cv_to_array(im, dtype=None):
         arr_dtype = np._np_dtypes[_cv_depths[im.depth]]
     else:
         arr_dtype = np._np_dtypes[dtype]
-    arr = asarray(arr_data, dtype=arr_dtype)
+    arr = _asarray(arr_data, dtype=arr_dtype)
     arr.shape = arr_shape
     return arr
 
