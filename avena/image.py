@@ -32,6 +32,20 @@ def get_channels(img):
             yield img[:, :, i]
 
 
+def map_to_channels(func, shape_func, img):
+    '''Map a function onto the channels of an image array.'''
+    d = utils.depth(img)
+    m, n = shape_func(img.shape[:2])
+    z = _empty((m, n, d), dtype=img.dtype)
+    for i, c in enumerate(get_channels(img)):
+        c = func(c)
+        if d > 1:
+            z[:, :, i] = c
+        else:
+            z = c
+    return z
+
+
 def read(filename, dtype=_DEFAULT_DTYPE, normalize=True):
     '''Read an image file as an array.'''
     img = Image.open(filename)

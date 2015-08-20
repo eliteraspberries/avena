@@ -50,20 +50,14 @@ def _high_pass_filter(shape, radius):
     return 1.0 - _low_pass_filter(shape, radius)
 
 
-def _filter(array, filter):
-    z = _empty(array.shape, dtype=array.dtype)
-    for i, c in enumerate(image.get_channels(array)):
-        C = _rfft2(c)
-        C = _fftshift(C)
-        _multiply(C, filter, out=C)
-        C = _ifftshift(C)
-        c = _irfft2(C, s=c.shape)
-        c = _real(c)
-        if utils.depth(array) > 1:
-            z[:, :, i] = c
-        else:
-            z = c
-    return z
+def _filter(filter, array):
+    X = _rfft2(array)
+    X = _fftshift(X)
+    _multiply(X, filter, out=X)
+    X = _ifftshift(X)
+    x = _irfft2(X, s=array.shape)
+    x = _real(x)
+    return x
 
 
 def _rshape(shape):
@@ -74,17 +68,32 @@ def _rshape(shape):
         return (m, (n + 1) // 2)
 
 
-def lowpass(array, radius):
+def _lowpass(radius, array):
+    rfilter = _low_pass_filter(_rshape(array.shape), radius)
+    return _filter(rfilter, array)
+
+
+def lowpass(img, radius):
     '''Apply a 2D low-pass filter to an image array.'''
-    rfilter = _low_pass_filter(_rshape(array.shape[:2]), radius)
-    return _filter(array, rfilter)
+    return image.map_to_channels(
+        partial(_lowpass, radius),
+        lambda (x, y): (x, y),
+        img,
+    )
 
 
-def highpass(array, radius):
+def _highpass(radius, array):
+    rfilter = _high_pass_filter(_rshape(array.shape), radius)
+    return _filter(rfilter, array)
+
+
+def highpass(img, radius):
     '''Apply a 2D high-pass filter to an image array.'''
-    m, n = array.shape[:2]
-    rfilter = _high_pass_filter(_rshape(array.shape[:2]), radius)
-    return _filter(array, rfilter)
+    return image.map_to_channels(
+        partial(_highpass, radius),
+        lambda (x, y): (x, y),
+        img,
+    )
 
 
 if __name__ == '__main__':

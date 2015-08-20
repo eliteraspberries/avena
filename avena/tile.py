@@ -40,18 +40,13 @@ def _tile9_periodic(x):
     return z
 
 
-def tile9_periodic(array):
+def tile9_periodic(img):
     '''Tile an image into a 3x3 periodic grid.'''
-    d = utils.depth(array)
-    m, n = _tile9_periodic_shape(array.shape[:2])
-    z = _empty((m, n, d), dtype=array.dtype)
-    for i, c in enumerate(image.get_channels(array)):
-        c = _tile9_periodic(c)
-        if d > 1:
-            z[:, :, i] = c
-        else:
-            z = c
-    return z
+    return image.map_to_channels(
+        _tile9_periodic,
+        _tile9_periodic_shape,
+        img,
+    )
 
 
 if __name__ == '__main__':
