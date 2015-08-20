@@ -13,12 +13,12 @@ def _tile9_periodic_shape(shape):
     return (3 * m, 3 * n)
 
 
-def _tile9_periodic(x):
-    m, n = x.shape
-    z = _zeros(_tile9_periodic_shape((m, n)), dtype=x.dtype)
-    xfv = flip.flip_vertical(x)
-    xfh = flip.flip_horizontal(x)
-    xfb = flip.flip_horizontal(flip.flip_vertical(x))
+def _tile9_periodic(array):
+    m, n = array.shape
+    z = _zeros(_tile9_periodic_shape((m, n)), dtype=array.dtype)
+    xfv = flip._flip_vertical(array)
+    xfh = flip._flip_horizontal(array)
+    xfb = flip._flip_horizontal(flip._flip_vertical(array))
     tile0 = z[m:(2 * m), n:(2 * n)]
     tile1 = z[:m, n:(2 * n)]
     tile2 = z[:m, (2 * n):(3 * n)]
@@ -28,7 +28,7 @@ def _tile9_periodic(x):
     tile6 = z[(2 * m):(3 * m), :n]
     tile7 = z[m:(2 * m), :n]
     tile8 = z[:m, :n]
-    tile0[:, :] = x[:, :]
+    tile0[:, :] = array[:, :]
     tile1[:, :] = xfv[:, :]
     tile2[:, :] = xfb[:, :]
     tile3[:, :] = xfh[:, :]
