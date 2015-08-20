@@ -33,5 +33,5 @@ _setup_args = {
 
 if __name__ == '__main__':
 
-    setup(packages=['avena'],
+    setup(packages=['avena'], scripts=['scripts/avena'],
           **_setup_args)
