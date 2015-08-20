@@ -20,7 +20,6 @@ from __future__ import print_function
 from docopt import docopt
 
 from avena import avena, image
-from avena import filter, flip, tile
 
 
 long_version = 'Avena ' + avena.__version__
@@ -37,6 +36,8 @@ if __name__ == '__main__':
 
     if arguments['filter']:
 
+        from avena import filter
+
         radius = int(arguments['<radius>'])
         for filename, img in zip(files, images):
             if arguments['high']:
@@ -47,6 +48,8 @@ if __name__ == '__main__':
 
     elif arguments['flip']:
 
+        from avena import flip
+
         if arguments['vertical']:
             flip_func = flip.flip_vertical
         else:
@@ -56,6 +59,8 @@ if __name__ == '__main__':
             print(image.save(flipped_img, filename, random=True))
 
     elif arguments['tile']:
+
+        from avena import tile
 
         if arguments['--periodic']:
             if arguments['9']:
