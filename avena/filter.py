@@ -6,7 +6,6 @@
 from functools import partial
 from numpy import (
     array as _array,
-    empty as _empty,
     multiply as _multiply,
     real as _real,
     vectorize as _vectorize,
@@ -18,7 +17,7 @@ from numpy.fft import (
     rfft2 as _rfft2,
 )
 
-from . import image, utils
+from . import image
 
 
 def __in_circle(a, b, r, coords):
