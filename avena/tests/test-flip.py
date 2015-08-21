@@ -2,7 +2,7 @@
 
 from numpy import all, array
 
-from avena import flip
+from .. import flip
 
 
 def test_flip_vertical():
