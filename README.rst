@@ -14,5 +14,14 @@ Avena requires:
 -  `NumPy <http://www.numpy.org/>`__;
 -  and `docopt <http://docopt.org/>`__.
 
+Installation
+------------
+
+Install Avena with `pip <https://pip.pypa.io/en/stable/>`__:
+
+::
+
+    pip install git+https://github.com/eliteraspberries/avena.git
+
 .. |image0| image:: https://travis-ci.org/eliteraspberries/avena.svg
    :target: https://travis-ci.org/eliteraspberries/avena

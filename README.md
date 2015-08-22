@@ -14,6 +14,14 @@ Avena requires:
  -  and [docopt][].
 
 
+Installation
+------------
+
+Install Avena with [pip][]:
+
+    pip install git+https://github.com/eliteraspberries/avena.git
+
+
 [build-status]: https://travis-ci.org/eliteraspberries/avena
 
 [Python]: <https://www.python.org/>
@@ -21,3 +29,4 @@ Avena requires:
 [Pillow]: <http://python-pillow.github.io/>
 [NumPy]: <http://www.numpy.org/>
 [docopt]: <http://docopt.org/>
+[pip]: <https://pip.pypa.io/en/stable/>
