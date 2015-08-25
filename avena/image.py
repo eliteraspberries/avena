@@ -62,10 +62,7 @@ def _pil_save(img, filename):
     return
 
 
-SAVE_NORMALIZED = False
-
-
-def save(img, filename, random=False, ext=None, normalize=SAVE_NORMALIZED):
+def save(img, filename, random=False, ext=None, normalize=True):
     '''Save an image array and return its path.'''
     if random:
         newfile = utils.rand_filename(filename, ext=ext)

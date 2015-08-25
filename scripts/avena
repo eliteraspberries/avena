@@ -18,6 +18,7 @@ Options:
 from __future__ import print_function
 
 from docopt import docopt
+from functools import partial
 
 from avena import avena, image
 
@@ -32,7 +33,7 @@ if __name__ == '__main__':
     files = list(arguments['<image>'])
     images = (image.read(i) for i in arguments['<image>'])
 
-    image.SAVE_NORMALIZED = True
+    image_save = partial(image.save, random=True, normalize=True)
 
     if arguments['filter']:
 
@@ -44,7 +45,7 @@ if __name__ == '__main__':
                 filtered_img = filter.highpass(img, radius)
             elif arguments['low']:
                 filtered_img = filter.lowpass(img, radius)
-            print(image.save(filtered_img, filename, random=True))
+            print(image_save(filtered_img, filename))
 
     elif arguments['flip']:
 
@@ -56,7 +57,7 @@ if __name__ == '__main__':
             flip_func = flip.flip_horizontal
         for filename, img in zip(files, images):
             flipped_img = flip_func(img)
-            print(image.save(flipped_img, filename, random=True))
+            print(image_save(flipped_img, filename))
 
     elif arguments['tile']:
 
@@ -67,4 +68,4 @@ if __name__ == '__main__':
                 tile_func = tile.tile9_periodic
         for filename, img in zip(files, images):
             tiled_img = tile_func(img)
-            print(image.save(tiled_img, filename, random=True))
+            print(image_save(tiled_img, filename))
