@@ -5,6 +5,7 @@
 Usage:
     avena filter (high|low) <radius> <image>...
     avena flip (vertical|horizontal) <image>...
+    avena interp <factor> <image>...
     avena tile [--periodic] (9) <image>...
     avena -h | --help
     avena -v | --version
@@ -58,6 +59,16 @@ if __name__ == '__main__':
         for filename, img in zip(files, images):
             flipped_img = flip_func(img)
             print(image_save(flipped_img, filename))
+
+    elif arguments['interp']:
+
+        from avena import interp
+
+        factor = int(arguments['<factor>'])
+
+        for filename, img in zip(files, images):
+            interp_img = interp.interp2(img, factor)
+            print(image_save(interp_img, filename))
 
     elif arguments['tile']:
 
