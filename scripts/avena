@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
         from avena import interp
 
-        factor = int(arguments['<factor>'])
+        factor = float(arguments['<factor>'])
 
         for filename, img in zip(files, images):
             interp_img = interp.interp2(img, factor)
