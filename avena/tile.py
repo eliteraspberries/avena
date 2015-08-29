@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''2D array tiling'''
+'''Tiling of image arrays'''
 
 
 from numpy import zeros as _zeros

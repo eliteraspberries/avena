@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Vertical or horizontal flipping of 2D images'''
+'''Vertical or horizontal flipping of image arrays'''
 
 
 from . import image

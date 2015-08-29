@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''2D image interpolation in the frequency domain'''
+'''Interpolation of image arrays in the frequency domain'''
 
 
 from functools import partial

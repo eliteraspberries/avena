@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''2D spatial filtering with the FFT'''
+'''Spatial filtering of image arrays with the FFT'''
 
 
 from functools import partial
