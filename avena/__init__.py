@@ -3,6 +3,7 @@ __all__ = [
     'flip',
     'image',
     'interp',
+    'logistic',
     'np',
     'tile',
     'utils',
