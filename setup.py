@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
 from avena import avena
 
@@ -29,6 +32,14 @@ _setup_args = {
     'url':              'https://bitbucket.org/eliteraspberries/avena',
     'version':          avena.__version__,
 }
+
+_requirements = [
+    'docopt',
+    'numpy',
+    'Pillow',
+]
+
+_setup_args['install_requires'] = _requirements
 
 
 if __name__ == '__main__':
