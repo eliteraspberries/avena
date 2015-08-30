@@ -8,4 +8,5 @@ __all__ = [
     'tile',
     'utils',
     'video',
+    'xcor2',
 ]
