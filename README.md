@@ -19,7 +19,7 @@ Installation
 
 Install Avena with [pip][]:
 
-    pip install git+https://github.com/eliteraspberries/avena.git
+    pip install avena
 
 
 [build-status]: https://travis-ci.org/eliteraspberries/avena
