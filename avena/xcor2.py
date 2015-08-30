@@ -4,10 +4,8 @@
 
 
 from numpy import (
-    amax as _amax,
     multiply as _multiply,
     ones as _ones,
-    real as _real,
     sqrt as _sqrt,
     zeros as _zeros,
 )
