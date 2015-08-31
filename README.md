@@ -1,6 +1,7 @@
 Avena is an image processing library and command-line tool.
 
 [![](https://travis-ci.org/eliteraspberries/avena.svg)][build-status]
+[![](https://codecov.io/github/eliteraspberries/avena/coverage.svg)][code-coverage]
 [![](https://img.shields.io/pypi/v/Avena.svg)][pypi]
 
 
@@ -24,6 +25,7 @@ Install Avena with [pip][]:
 
 
 [build-status]: https://travis-ci.org/eliteraspberries/avena
+[code-coverage]: https://codecov.io/github/eliteraspberries/avena
 [pypi]: https://pypi.python.org/pypi/Avena
 
 [Python]: <https://www.python.org/>
