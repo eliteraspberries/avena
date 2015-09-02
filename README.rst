@@ -1,6 +1,6 @@
 Avena is an image processing library and command-line tool.
 
-|image0| |image1| |image2|
+|image0| |image1| |image2| |image3|
 
 Requirements
 ------------
@@ -29,3 +29,5 @@ Install Avena with `pip <https://pip.pypa.io/en/stable/>`__:
    :target: https://codecov.io/github/eliteraspberries/avena
 .. |image2| image:: https://img.shields.io/pypi/v/Avena.svg
    :target: https://pypi.python.org/pypi/Avena
+.. |image3| image:: https://readthedocs.org/projects/avena/badge/?version=latest
+   :target: https://readthedocs.org/projects/avena/?badge=latest
