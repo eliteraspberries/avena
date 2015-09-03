@@ -6,8 +6,8 @@ Avena is an image processing library and command-line tool.
 [![](https://readthedocs.org/projects/avena/badge/?version=latest)][docs]
 
 
-Requirements
-------------
+Install Avena
+-------------
 
 Avena requires:
 
@@ -16,19 +16,31 @@ Avena requires:
  -  [NumPy][];
  -  and [docopt][].
 
-
-Installation
-------------
-
 Install Avena with [pip][]:
 
     pip install avena
 
 
+Features
+--------
+
+ - [x] Flipping
+ - [x] Spacial filtering
+ - [x] Interpolation
+ - [x] Tiling
+ - [x] Cross-correlation
+
+
+Documentation
+-------------
+
+Documentation is available online at [Read the Docs][docs].
+
+
 [build-status]: https://travis-ci.org/eliteraspberries/avena
 [code-coverage]: https://codecov.io/github/eliteraspberries/avena
 [pypi]: https://pypi.python.org/pypi/Avena
-[docs]: https://readthedocs.org/projects/avena/?badge=latest
+[docs]: http://avena.readthedocs.org/en/latest/
 
 [Python]: <https://www.python.org/>
 [Python Imaging Library]: <http://pythonware.com/products/pil/>
