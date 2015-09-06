@@ -70,8 +70,8 @@ def normalize(array):
     '''Normalize an array to the interval [0,1].'''
     mu = _mean(array)
     rho2 = _std(array)
-    min = mu - 3.0 * rho2
-    max = mu + 3.0 * rho2
+    min = mu - 1.5 * rho2
+    max = mu + 1.5 * rho2
     array -= min
     if max - min > _eps:
         array /= max - min
