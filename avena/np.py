@@ -45,9 +45,10 @@ _dtype_bounds = {
 }
 
 
-def from_uint8(array, dtype):
-    new_array = array.astype(dtype)
-    return new_array
+def from_uint8(array):
+    float_array = array.astype(_float32)
+    float_array *= 1.0 / 256.0
+    return float_array
 
 
 def to_uint8(array):

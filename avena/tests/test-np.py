@@ -7,15 +7,15 @@ from .. import np
 
 x = array([8, 16, 32], dtype='uint8')
 
-y = array([8., 16., 32.], dtype='float32')
+y = array([8. / 256., 16. / 256., 32. / 256.], dtype='float32')
 
 
 def test_from_uint8():
-    assert all(np.from_uint8(x, 'float32') == y)
+    assert all(np.from_uint8(x) == y)
 
 
 def test_to_uint8():
-    assert all(np.to_uint8(y / 255.) == x)
+    assert all(np.to_uint8(y) == x)
 
 
 def test_clip():

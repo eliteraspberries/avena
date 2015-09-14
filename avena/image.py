@@ -4,6 +4,7 @@
 
 
 from numpy import (
+    array as _array,
     asarray as _asarray,
     copy as _copy,
     empty as _empty,
@@ -13,8 +14,6 @@ from PIL import Image
 
 from . import np, utils
 
-
-_DEFAULT_DTYPE = _float32
 
 _PIL_RGB = {
     'R': 0,
@@ -46,13 +45,11 @@ def map_to_channels(func, shape_func, img):
     return z
 
 
-def read(filename, dtype=_DEFAULT_DTYPE, normalize=True):
+def read(filename):
     '''Read an image file as an array.'''
     img = Image.open(filename)
-    arr = _asarray(img, dtype=dtype)
+    arr = np.from_uint8(_array(img))
     utils.swap_rgb(arr, _PIL_RGB, to=utils._PREFERRED_RGB)
-    if normalize:
-        np.normalize(arr)
     return arr
 
 
