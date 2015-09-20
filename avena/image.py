@@ -5,10 +5,8 @@
 
 from numpy import (
     array as _array,
-    asarray as _asarray,
     copy as _copy,
     empty as _empty,
-    float32 as _float32,
 )
 from PIL import Image
 
