@@ -7,7 +7,10 @@ from random import randint
 def _depth(x, y, z=1):
     return z
 
-_invert_dict = lambda d: dict((v, k) for k, v in list(d.items()))
+
+def _invert_dict(d):
+    return dict((v, k) for k, v in list(d.items()))
+
 
 _PREFERRED_RGB = {
     'R': 0,
