@@ -4,7 +4,8 @@ from os.path import exists, splitext
 from random import randint
 
 
-_depth = lambda x, y, z=1: z
+def _depth(x, y, z=1):
+    return z
 
 _invert_dict = lambda d: dict((v, k) for k, v in list(d.items()))
 
