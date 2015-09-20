@@ -4,6 +4,7 @@ Avena is an image processing library and command-line tool.
 [![](https://codecov.io/github/eliteraspberries/avena/coverage.svg)][code-coverage]
 [![](https://img.shields.io/pypi/v/Avena.svg)][pypi]
 [![](https://readthedocs.org/projects/avena/badge/?version=latest)][docs]
+![](https://img.shields.io/github/license/eliteraspberries/avena.svg)
 
 
 Install Avena
