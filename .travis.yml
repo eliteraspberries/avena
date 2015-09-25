@@ -9,8 +9,9 @@ install:
   - pip install -r requirements.txt
   - pip install codecov
 script:
-  - py.test --cov=.
+  - py.test
 after_success:
+  - py.test --cov=avena
   - codecov
 virtualenv:
   system_site_packages: true
