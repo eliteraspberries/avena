@@ -5,10 +5,10 @@
 
 from functools import partial
 from numpy import (
-    array as _array,
+    float32 as _float32,
+    indices as _indices,
     multiply as _multiply,
     real as _real,
-    vectorize as _vectorize,
 )
 from numpy.fft import (
     fftshift as _fftshift,
@@ -20,30 +20,15 @@ from numpy.fft import (
 from . import image
 
 
-def __in_circle(a, b, r, coords):
-    x, y = coords
-    d = (x - a) ** 2 + (y - b) ** 2
-    if d < r ** 2:
-        return 1.0
-    else:
-        return 0.0
-
-
-def _indices_array(shape):
-    m, n = shape
-    indices = _array(
-        [[(i, j) for j in range(n)] for i in range(m)],
-        dtype=('f4,f4'),
-    )
-    return indices
-
-
 def _low_pass_filter(shape, radius):
     m, n = shape
-    indices = _indices_array(shape)
-    _in_circle = partial(__in_circle, m // 2, n // 2, radius)
-    _v_in_circle = _vectorize(_in_circle)
-    return _v_in_circle(indices)
+    a, b = m // 2, n // 2
+    i = _indices((m, n), dtype=_float32)
+    rows, columns = i[0, :], i[1, :]
+    d = (rows - a) ** 2 + (columns - b) ** 2
+    d[d < radius ** 2] = 1.0
+    d[d >= radius ** 2] = 0.0
+    return d
 
 
 def _high_pass_filter(shape, radius):
