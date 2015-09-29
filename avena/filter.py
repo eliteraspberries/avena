@@ -8,7 +8,6 @@ from numpy import (
     float32 as _float32,
     indices as _indices,
     multiply as _multiply,
-    real as _real,
 )
 from numpy.fft import (
     fftshift as _fftshift,
@@ -41,7 +40,6 @@ def _filter(filter, array):
     _multiply(X, filter, out=X)
     X = _ifftshift(X)
     x = _irfft2(X, s=array.shape)
-    x = _real(x)
     return x
 
 
