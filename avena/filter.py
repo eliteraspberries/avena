@@ -25,8 +25,8 @@ def _low_pass_filter(shape, radius):
     i = _indices((m, n), dtype=_float32)
     rows, columns = i[0, :], i[1, :]
     d = (rows - a) ** 2 + (columns - b) ** 2
-    d[d < radius ** 2] = 1.0
-    d[d >= radius ** 2] = 0.0
+    d[d <= radius ** 2] = 1.0
+    d[d > radius ** 2] = 0.0
     return d
 
 
