@@ -76,10 +76,10 @@ def _xcor2(array1, array2):
 def xcor2(array1, array2):
     '''Compute the cross-correlation of two image arrays.'''
     z = _ones(array1.shape[:2])
-    channel_pairs = zip(
+    channel_pairs = list(zip(
         image.get_channels(array1),
         image.get_channels(array2),
-    )
+    ))
     for (xi, yi) in channel_pairs:
         xcori = _xcor2(xi, yi)
         _multiply(z, xcori, out=z)
