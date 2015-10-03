@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
 from numpy import (
+    argmax as _argmax,
     around as _around,
     empty as _empty,
     mean as _mean,
     std as _std,
+    unravel_index as _unravel_index,
 )
 from numpy import (
     int8 as _int8,
@@ -77,6 +79,11 @@ def normalize(array):
     if max - min > _eps:
         array /= max - min
     return
+
+
+def peak(array):
+    '''Return the index of the peak value of an array.'''
+    return _unravel_index(_argmax(array), array.shape)
 
 
 if __name__ == '__main__':

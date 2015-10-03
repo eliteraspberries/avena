@@ -32,5 +32,10 @@ def test_clip():
     assert all(x <= 1.)
 
 
+def test_peak():
+    x = array([[1, 2, 3], [2, 10, 4], [4, 5, 6]])
+    assert np.peak(x) == (1, 1)
+
+
 if __name__ == '__main__':
     pass
