@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Cross-correlation of image arrays'''
+"""Cross-correlation of image arrays."""
 
 
 from numpy import (
@@ -74,7 +74,7 @@ def _xcor2(array1, array2):
 
 
 def xcor2(array1, array2):
-    '''Compute the cross-correlation of two image arrays.'''
+    """Compute the cross-correlation of two image arrays."""
     z = _ones(array1.shape[:2])
     channel_pairs = list(zip(
         image.get_channels(array1),

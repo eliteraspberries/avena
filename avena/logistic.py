@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Logistic functions applied to image arrays'''
+"""Logistic functions applied to image arrays."""
 
 
 from functools import partial
@@ -14,7 +14,7 @@ def _logistic(k, array):
 
 
 def logistic(k, img):
-    '''Apply the logistic function of degree k to an image array.'''
+    """Apply the logistic function of degree k to an image array."""
     return image.map_to_channels(
         partial(_logistic, k),
         lambda shape: shape,

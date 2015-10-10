@@ -20,12 +20,12 @@ _PREFERRED_RGB = {
 
 
 def depth(array):
-    '''Return the depth (the third dimension) of an array.'''
+    """Return the depth (the third dimension) of an array."""
     return _depth(*array.shape)
 
 
 def rand_filename(filename, ext=None):
-    '''Return a unique file name based on the given file name.'''
+    """Return a unique file name based on the given file name."""
     file_name, file_ext = splitext(filename)
     if ext is None:
         ext = file_ext
@@ -40,7 +40,7 @@ def rand_filename(filename, ext=None):
 
 
 def swap_rgb(img, current, to):
-    '''Swap the RBG channels of an image array.'''
+    """Swap the RBG channels of an image array."""
     if depth(img) == 3 and not current == to:
         current_indices = list(map(current.get, ('R', 'G', 'B')))
         to_indices = list(map(to.get, ('R', 'G', 'B')))

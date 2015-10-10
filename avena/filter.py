@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Spatial filtering of image arrays with the FFT'''
+"""Spatial filtering of image arrays with the FFT."""
 
 
 from functools import partial
@@ -57,7 +57,7 @@ def _lowpass(radius, array):
 
 
 def lowpass(img, radius):
-    '''Apply a 2D low-pass filter to an image array.'''
+    """Apply a 2D low-pass filter to an image array."""
     return image.map_to_channels(
         partial(_lowpass, radius),
         lambda shape: shape,
@@ -71,7 +71,7 @@ def _highpass(radius, array):
 
 
 def highpass(img, radius):
-    '''Apply a 2D high-pass filter to an image array.'''
+    """Apply a 2D high-pass filter to an image array."""
     return image.map_to_channels(
         partial(_highpass, radius),
         lambda shape: shape,

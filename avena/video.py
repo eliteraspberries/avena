@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Read and write image and video files with OpenCV'''
+"""Read and write image and video files with OpenCV."""
 
 
 from cv2 import cv
@@ -60,8 +60,7 @@ def _save_image(image, filename, random=False, ext=None):
 
 
 def num_frames(video_file):
-    '''Return the number of frames in a video file.
-    '''
+    """Return the number of frames in a video file."""
     cap = cv.CaptureFromFile(video_file)
     if not cap:
         raise IOError('CaptureFromFile')
@@ -70,10 +69,10 @@ def num_frames(video_file):
 
 
 def _cv_to_array(im, dtype=None):
-    '''Return an OpenCV image object as a NumPy array.
+    """Return an OpenCV image object as a NumPy array.
 
     If a dtype is specified, return an array of that type.
-    '''
+    """
     arr_data = im[:, :]
     arr_shape = (im.height, im.width, im.nChannels)
     if dtype is None:
@@ -86,8 +85,7 @@ def _cv_to_array(im, dtype=None):
 
 
 def _array_to_cv(arr):
-    '''Return a NumPy array as an OpenCV image object.
-    '''
+    """Return a NumPy array as an OpenCV image object."""
     utils.swap_rgb(arr, utils._PREFERRED_RGB, to=_OCV_RGB)
     im_channels = utils.depth(arr)
     swap = lambda x, y, z=1: (y, x)
@@ -124,7 +122,7 @@ def _set_cam_properties(cap, props):
 def get_frames(video_file=None,
                cam=-1, cam_res=None, cam_fps=None,
                as_array=True, dtype=None):
-    '''Return a list of individual frames in a video file or
+    """Return a list of individual frames in a video file or
     webcam stream.
 
     If the parameter 'video_file' is None, frames are read
@@ -139,7 +137,7 @@ def get_frames(video_file=None,
 
     If the parameter 'as_array' is True, return NumPy arrays.
     If dtype is specified, return NumPy arrays of that type.
-    '''
+    """
 
     if dtype is None:
         dtype = DEFAULT_FRAME_ARRAY_DTYPE

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Tiling of image arrays'''
+"""Tiling of image arrays."""
 
 
 from numpy import zeros as _zeros
@@ -41,7 +41,7 @@ def _tile9_periodic(array):
 
 
 def tile9_periodic(img):
-    '''Tile an image into a 3x3 periodic grid.'''
+    """Tile an image into a 3x3 periodic grid."""
     return image.map_to_channels(
         _tile9_periodic,
         _tile9_periodic_shape,

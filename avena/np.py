@@ -60,7 +60,7 @@ def to_uint8(array):
 
 
 def clip(array, bounds):
-    '''Clip the values of an array to the given interval.'''
+    """Clip the values of an array to the given interval."""
     (min, max) = bounds
     x = array < min + _eps
     y = array > max - _eps
@@ -70,7 +70,7 @@ def clip(array, bounds):
 
 
 def normalize(array):
-    '''Normalize an array to the interval [0,1].'''
+    """Normalize an array to the interval [0,1]."""
     mu = _mean(array)
     rho2 = _std(array)
     min = mu - 1.5 * rho2
@@ -82,7 +82,7 @@ def normalize(array):
 
 
 def peak(array):
-    '''Return the index of the peak value of an array.'''
+    """Return the index of the peak value of an array."""
     return _unravel_index(_argmax(array), array.shape)
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Read and write image files as NumPy arrays'''
+"""Read and write image files as NumPy arrays."""
 
 
 from numpy import (
@@ -21,7 +21,7 @@ _PIL_RGB = {
 
 
 def get_channels(img):
-    '''Return a list of channels of an image array.'''
+    """Return a list of channels of an image array."""
     if utils.depth(img) == 1:
         yield img
     else:
@@ -30,7 +30,7 @@ def get_channels(img):
 
 
 def map_to_channels(func, shape_func, img):
-    '''Map a function onto the channels of an image array.'''
+    """Map a function onto the channels of an image array."""
     d = utils.depth(img)
     m, n = shape_func(img.shape[:2])
     z = _empty((m, n, d), dtype=img.dtype)
@@ -44,7 +44,7 @@ def map_to_channels(func, shape_func, img):
 
 
 def read(filename):
-    '''Read an image file as an array.'''
+    """Read an image file as an array."""
     img = Image.open(filename)
     arr = np.from_uint8(_array(img))
     utils.swap_rgb(arr, _PIL_RGB, to=utils._PREFERRED_RGB)
@@ -58,7 +58,7 @@ def _pil_save(img, filename):
 
 
 def save(img, filename, random=False, ext=None, normalize=True):
-    '''Save an image array and return its path.'''
+    """Save an image array and return its path."""
     if random:
         newfile = utils.rand_filename(filename, ext=ext)
     else:

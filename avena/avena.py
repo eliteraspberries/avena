@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Avena is an image processing library and command-line tool.'''
+"""Avena is an image processing library and command-line tool."""
 
 
 __author__ = 'Mansour Moufid'

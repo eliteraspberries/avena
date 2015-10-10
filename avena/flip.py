@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''Vertical or horizontal flipping of image arrays'''
+"""Vertical or horizontal flipping of image arrays."""
 
 
 from . import image
@@ -11,7 +11,7 @@ def _flip_vertical(array):
 
 
 def flip_vertical(img):
-    '''Flip an image array vertically.'''
+    """Flip an image array vertically."""
     return image.map_to_channels(
         _flip_vertical,
         lambda shape: shape,
@@ -24,7 +24,7 @@ def _flip_horizontal(array):
 
 
 def flip_horizontal(img):
-    '''Flip an image array horizontally.'''
+    """Flip an image array horizontally."""
     return image.map_to_channels(
         _flip_horizontal,
         lambda shape: shape,
