@@ -34,31 +34,6 @@ _OCV_RGB = {
 }
 
 
-def _template_image(image, depth):
-    '''Return an empty image object of the same dimensions,
-    colour depth, and number of channels as the given image.
-    '''
-    size = (image.width, image.height)
-    channels = image.nChannels
-    dup = cv.CreateImage(size, depth, channels)
-    return dup
-
-
-def _save_image(image, filename, random=False, ext=None):
-    '''Save an image object and return the file name.
-
-    If the parameter 'random' is True, use a random file name.
-    '''
-    if random:
-        newfile = utils.rand_filename(filename, ext=ext)
-    else:
-        newfile = filename
-    newimage = _template_image(image, cv.IPL_DEPTH_8U)
-    cv.ConvertScaleAbs(image, newimage, scale=255)
-    cv.SaveImage(newfile, newimage)
-    return newfile
-
-
 def num_frames(video_file):
     """Return the number of frames in a video file."""
     cap = cv.CaptureFromFile(video_file)
