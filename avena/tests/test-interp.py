@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from numpy import all, allclose, array, float32, max
+from numpy import allclose, array, float32
 
 from .. import interp
 
