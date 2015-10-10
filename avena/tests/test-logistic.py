@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from numpy import all, array, random
+from numpy import all, random
 
 from .. import logistic
 
