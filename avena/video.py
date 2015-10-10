@@ -59,12 +59,15 @@ def _cv_to_array(im, dtype=None):
     return arr
 
 
+def _swap(x, y, z=1):
+    return (y, x)
+
+
 def _array_to_cv(arr):
     """Return a NumPy array as an OpenCV image object."""
     utils.swap_rgb(arr, utils._PREFERRED_RGB, to=_OCV_RGB)
     im_channels = utils.depth(arr)
-    swap = lambda x, y, z=1: (y, x)
-    im_shape = swap(*arr.shape)
+    im_shape = _swap(*arr.shape)
     im_size = arr.dtype.itemsize * im_channels * im_shape[0]
     im_depth = _cv_depths_inv[str(arr.dtype)]
     im = cv.CreateImageHeader(im_shape, im_depth, im_channels)
