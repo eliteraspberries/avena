@@ -7,6 +7,7 @@ Usage:
     avena flip (vertical|horizontal) <image>...
     avena interp <factor> <image>...
     avena tile [--periodic] (9) <image>...
+    avena translate [--] (<y> <x>) <image>...
     avena xcor (<image> <image>)...
     avena -h | --help
     avena -v | --version
@@ -81,6 +82,16 @@ if __name__ == '__main__':
         for filename, img in zip(files, images):
             tiled_img = tile_func(img)
             print(image_save(tiled_img, filename))
+
+    elif arguments['translate']:
+
+        from avena import translate
+
+        y = int(arguments['<y>'])
+        x = int(arguments['<x>'])
+        for filename, img in zip(files, images):
+            translated_img = translate.translate(img, (y, x))
+            print(image_save(translated_img, filename))
 
     elif arguments['xcor']:
 
