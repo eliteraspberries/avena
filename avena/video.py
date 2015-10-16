@@ -100,8 +100,7 @@ def _set_cam_properties(cap, props):
 def get_frames(video_file=None,
                cam=-1, cam_res=None, cam_fps=None,
                as_array=True, dtype=None):
-    """Return a list of individual frames in a video file or
-    webcam stream.
+    """Return the frames of a video file or webcam stream.
 
     If the parameter 'video_file' is None, frames are read
     from the default webcam.
