@@ -6,7 +6,7 @@
 __author__ = 'Mansour Moufid'
 __copyright__ = 'Copyright 2014, 2015, Mansour Moufid'
 __license__ = 'ISC'
-__version__ = '1.0'
+__version__ = '1.1'
 __email__ = 'mansourmoufid@gmail.com'
 __status__ = 'Development'
 
