@@ -4,6 +4,7 @@
 
 Usage:
     avena [options] average <image>...
+    avena [options] clip from (<y1> <x1>) to (<y2> <x2>) <image>...
     avena [options] filter (high|low) <radius> <image>...
     avena [options] flip (vertical|horizontal) <image>...
     avena [options] interp <factor> <image>...
@@ -54,6 +55,14 @@ if __name__ == '__main__':
         n = len(files)
         average_img = sum(images) * 1.0 / float(n)
         print(image_save(average_img, files[0]))
+
+    elif arguments['clip']:
+
+        y1, x1 = int(arguments['<y1>']), int(arguments['<x1>'])
+        y2, x2 = int(arguments['<y2>']), int(arguments['<x2>'])
+        for filename, img in zip(files, images):
+            clipped_img = img[y1:y2, x1:x2]
+            print(image_save(clipped_img, filename))
 
     elif arguments['filter']:
 
