@@ -3,6 +3,7 @@
 """Read and write image files as NumPy arrays."""
 
 
+from os.path import splitext
 from numpy import (
     array as _array,
     copy as _copy,
@@ -62,7 +63,8 @@ def save(img, filename, random=False, ext=None, normalize=True):
     if random:
         newfile = utils.rand_filename(filename, ext=ext)
     else:
-        newfile = filename
+        file_name, file_ext = splitext(filename)
+        newfile = file_name + (ext or file_ext)
     utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
     save_img = _copy(img)
     if normalize:
