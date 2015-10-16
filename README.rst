@@ -20,15 +20,6 @@ Install Avena with `pip <https://pip.pypa.io/en/stable/>`__:
 
     pip install avena
 
-Features
---------
-
--  [x] Flipping
--  [x] Spacial filtering
--  [x] Interpolation
--  [x] Tiling
--  [x] Cross-correlation
-
 Documentation
 -------------
 

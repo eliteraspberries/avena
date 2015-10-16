@@ -9,6 +9,7 @@ Contents:
    :maxdepth: 2
 
    install
+   features
 
 
 Indices and tables
