@@ -10,6 +10,7 @@ Contents:
 
    install
    features
+   usage
 
 
 Indices and tables
