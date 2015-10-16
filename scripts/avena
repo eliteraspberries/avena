@@ -14,6 +14,8 @@ Usage:
 
 Options:
     --ext=<STR>     Specify the format to save images.
+    --random        Save to a random file name.
+    --in-place      Overwrite the file.
     -h, --help      Print this help.
     -v, --version   Print version information.
 '''
@@ -38,10 +40,11 @@ if __name__ == '__main__':
     images = (image.read(i) for i in arguments['<image>'])
 
     ext = arguments['--ext'] or '.png'
+    random = False if arguments['--in-place'] else True
     image_save = partial(
         image.save,
         ext=ext,
-        random=True,
+        random=random,
         normalize=True,
     )
 
