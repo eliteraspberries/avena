@@ -27,6 +27,7 @@ from __future__ import print_function
 
 from docopt import docopt
 from functools import partial
+from os.path import abspath, expanduser
 
 from avena import avena, image
 
@@ -38,7 +39,7 @@ if __name__ == '__main__':
 
     arguments = docopt(__doc__, version=long_version)
 
-    files = list(arguments['<image>'])
+    files = [abspath(expanduser(f)) for f in arguments['<image>']]
     images = (image.read(i) for i in arguments['<image>'])
 
     ext = arguments['--ext'] or '.png'
