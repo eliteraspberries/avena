@@ -7,7 +7,6 @@ from numpy import (
     multiply as _multiply,
     ones as _ones,
     sqrt as _sqrt,
-    zeros as _zeros,
 )
 from numpy.fft import (
     fftshift as _fftshift,
@@ -16,7 +15,7 @@ from numpy.fft import (
     irfft2 as _irfft2,
 )
 
-from . import filter, image, tile
+from . import filter, image, np, tile
 
 
 _DETREND_FACTOR = 0.10
@@ -27,14 +26,6 @@ def _detrend_filter(array):
     r = int(_sqrt(m * n) * _DETREND_FACTOR)
     f = filter._high_pass_filter((m, n), r)
     _multiply(array, f, out=array)
-
-
-def _zeropad(array, size):
-    m, n = array.shape
-    p, q = size
-    z = _zeros((p, q), dtype=array.dtype)
-    z[:m, :n] = array
-    return z
 
 
 def _xcor2_shape(shapes):
@@ -57,8 +48,8 @@ def _xcor2(array1, array2):
     y = array2[::-1, ::-1]
     c, d = y.shape
     m, n = _xcor2_shape(((a, b), (c, d)))
-    x = _zeropad(x, (m, n))
-    y = _zeropad(y, (m, n))
+    x = np._zeropad(x, (m, n))
+    y = np._zeropad(y, (m, n))
     X = _rfft2(x)
     Y = _rfft2(y)
     X = _fftshift(X)

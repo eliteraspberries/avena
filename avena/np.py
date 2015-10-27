@@ -7,6 +7,7 @@ from numpy import (
     mean as _mean,
     std as _std,
     unravel_index as _unravel_index,
+    zeros as _zeros,
 )
 from numpy import (
     int8 as _int8,
@@ -84,6 +85,14 @@ def normalize(array):
 def peak(array):
     """Return the index of the peak value of an array."""
     return _unravel_index(_argmax(array), array.shape)
+
+
+def _zeropad(array, size):
+    m, n = array.shape
+    p, q = size
+    z = _zeros((p, q), dtype=array.dtype)
+    z[:m, :n] = array
+    return z
 
 
 if __name__ == '__main__':

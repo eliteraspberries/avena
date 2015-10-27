@@ -5,13 +5,6 @@ from numpy import all, array
 from .. import np, xcor2
 
 
-def test_zeropad():
-    x = array([[1]])
-    y = array([[1, 0, 0], [0, 0, 0], [0, 0, 0]])
-    z = xcor2._zeropad(x, y.shape)
-    assert all(z == y)
-
-
 def test_xcor2_shape():
     x = (3, 3)
     y = (1, 1)

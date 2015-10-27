@@ -37,5 +37,12 @@ def test_peak():
     assert np.peak(x) == (1, 1)
 
 
+def test_zeropad():
+    x = array([[1]])
+    y = array([[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+    z = np._zeropad(x, y.shape)
+    assert all(z == y)
+
+
 if __name__ == '__main__':
     pass
