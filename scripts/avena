@@ -18,6 +18,8 @@ Options:
     --ext=<STR>     Specify the format to save images.
     --random        Save to a random file name.
     --in-place      Overwrite the file.
+    --normalize     Normalize images before saving.
+    --no-normalize  Save images without normalizing.
     -h, --help      Print this help.
     -v, --version   Print version information.
 '''
@@ -44,11 +46,12 @@ if __name__ == '__main__':
 
     ext = arguments['--ext'] or '.png'
     random = False if arguments['--in-place'] else True
+    normalize = False if arguments['--no-normalize'] else True
     image_save = partial(
         image.save,
         ext=ext,
         random=random,
-        normalize=True,
+        normalize=normalize,
     )
 
     if arguments['average']:
