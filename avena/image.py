@@ -33,14 +33,14 @@ def get_channels(img):
 def map_to_channels(func, shape_func, img):
     """Map a function onto the channels of an image array."""
     d = utils.depth(img)
+    if d == 1:
+        return func(img)
     m, n = shape_func(img.shape[:2])
     z = _empty((m, n, d), dtype=img.dtype)
     for i, c in enumerate(get_channels(img)):
-        c = func(c)
-        if d > 1:
-            z[:, :, i] = c
-        else:
-            z = c
+        x = func(c)
+        p, q = x.shape
+        z[:p, :q, i] = x[:, :]
     return z
 
 
