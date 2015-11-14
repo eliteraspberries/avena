@@ -3,12 +3,8 @@
 """Read and write image files as NumPy arrays."""
 
 
-from os.path import splitext
-from numpy import (
-    array as _array,
-    copy as _copy,
-    empty as _empty,
-)
+import numpy
+import os
 from PIL import Image
 
 from . import np, utils
@@ -36,7 +32,7 @@ def map_to_channels(func, shape_func, img):
     if d == 1:
         return func(img)
     m, n = shape_func(img.shape[:2])
-    z = _empty((m, n, d), dtype=img.dtype)
+    z = numpy.empty((m, n, d), dtype=img.dtype)
     for i, c in enumerate(get_channels(img)):
         x = func(c)
         p, q = x.shape
@@ -47,7 +43,7 @@ def map_to_channels(func, shape_func, img):
 def read(filename):
     """Read an image file as an array."""
     img = Image.open(filename)
-    arr = np.from_uint8(_array(img))
+    arr = np.from_uint8(numpy.array(img))
     utils.swap_rgb(arr, _PIL_RGB, to=utils._PREFERRED_RGB)
     return arr
 
@@ -63,10 +59,10 @@ def save(img, filename, random=False, ext=None, normalize=True):
     if random:
         newfile = utils.rand_filename(filename, ext=ext)
     else:
-        file_name, file_ext = splitext(filename)
+        file_name, file_ext = os.path.splitext(filename)
         newfile = file_name + (ext or file_ext)
     utils.swap_rgb(img, utils._PREFERRED_RGB, to=_PIL_RGB)
-    save_img = _copy(img)
+    save_img = numpy.copy(img)
     if normalize:
         np.normalize(save_img)
     np.clip(save_img, np._dtype_bounds[str(save_img.dtype)])

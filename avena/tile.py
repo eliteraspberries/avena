@@ -3,7 +3,7 @@
 """Tiling of image arrays."""
 
 
-from numpy import zeros as _zeros
+import numpy
 
 from . import flip, image
 
@@ -15,7 +15,7 @@ def _tile9_periodic_shape(shape):
 
 def _tile9_periodic(array):
     m, n = array.shape
-    z = _zeros(_tile9_periodic_shape((m, n)), dtype=array.dtype)
+    z = numpy.zeros(_tile9_periodic_shape((m, n)), dtype=array.dtype)
     xfv = flip._flip_vertical(array)
     xfh = flip._flip_horizontal(array)
     xfb = flip._flip_horizontal(flip._flip_vertical(array))

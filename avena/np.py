@@ -1,43 +1,23 @@
 #!/usr/bin/env python
 
-from numpy import (
-    argmax as _argmax,
-    around as _around,
-    empty as _empty,
-    mean as _mean,
-    std as _std,
-    unravel_index as _unravel_index,
-    zeros as _zeros,
-)
-from numpy import (
-    int8 as _int8,
-    int16 as _int16,
-    int32 as _int32,
-    int64 as _int64,
-    uint8 as _uint8,
-    uint16 as _uint16,
-    uint32 as _uint32,
-    uint64 as _uint64,
-    float32 as _float32,
-    float64 as _float64,
-)
-from sys import float_info as _float_info
+import numpy
+import sys
 
 
-_eps = 10.0 * _float_info.epsilon
+_eps = 10.0 * sys.float_info.epsilon
 
 # Map of NumPy array type strings to types
 _np_dtypes = {
-    'int8':     _int8,
-    'int16':    _int16,
-    'int32':    _int32,
-    'int64':    _int64,
-    'uint8':    _uint8,
-    'uint16':   _uint16,
-    'uint32':   _uint32,
-    'uint64':   _uint64,
-    'float32':  _float32,
-    'float64':  _float64,
+    'int8':     numpy.int8,
+    'int16':    numpy.int16,
+    'int32':    numpy.int32,
+    'int64':    numpy.int64,
+    'uint8':    numpy.uint8,
+    'uint16':   numpy.uint16,
+    'uint32':   numpy.uint32,
+    'uint64':   numpy.uint64,
+    'float32':  numpy.float32,
+    'float64':  numpy.float64,
 }
 
 
@@ -49,14 +29,14 @@ _dtype_bounds = {
 
 
 def from_uint8(array):
-    float_array = array.astype(_float32)
+    float_array = array.astype(numpy.float32)
     float_array *= 1.0 / 256.0
     return float_array
 
 
 def to_uint8(array):
-    uint8_array = _empty(array.shape, dtype=_uint8)
-    _around(array * 255, out=uint8_array)
+    uint8_array = numpy.empty(array.shape, dtype=numpy.uint8)
+    numpy.around(array * 255, out=uint8_array)
     return uint8_array
 
 
@@ -72,8 +52,8 @@ def clip(array, bounds):
 
 def normalize(array):
     """Normalize an array to the interval [0,1]."""
-    mu = _mean(array)
-    rho2 = _std(array)
+    mu = numpy.mean(array)
+    rho2 = numpy.std(array)
     min = mu - 1.5 * rho2
     max = mu + 1.5 * rho2
     array -= min
@@ -84,13 +64,13 @@ def normalize(array):
 
 def peak(array):
     """Return the index of the peak value of an array."""
-    return _unravel_index(_argmax(array), array.shape)
+    return numpy.unravel_index(numpy.argmax(array), array.shape)
 
 
 def _zeropad(array, size):
     m, n = array.shape
     p, q = size
-    z = _zeros((p, q), dtype=array.dtype)
+    z = numpy.zeros((p, q), dtype=array.dtype)
     z[:m, :n] = array
     return z
 

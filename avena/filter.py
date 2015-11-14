@@ -3,18 +3,9 @@
 """Spatial filtering of image arrays with the FFT."""
 
 
-from functools import partial
-from numpy import (
-    float32 as _float32,
-    indices as _indices,
-    multiply as _multiply,
-)
-from numpy.fft import (
-    fftshift as _fftshift,
-    ifftshift as _ifftshift,
-    irfft2 as _irfft2,
-    rfft2 as _rfft2,
-)
+import functools
+import numpy
+from numpy import fft
 
 from . import image
 
@@ -22,7 +13,7 @@ from . import image
 def _low_pass_filter(shape, radius):
     m, n = shape
     a, b = m // 2, n // 2
-    i = _indices((m, n), dtype=_float32)
+    i = numpy.indices((m, n), dtype=numpy.float32)
     rows, columns = i[0, :], i[1, :]
     d = (rows - a) ** 2 + (columns - b) ** 2
     d[d <= radius ** 2] = 1.0
@@ -35,11 +26,11 @@ def _high_pass_filter(shape, radius):
 
 
 def _filter(filter, array):
-    X = _rfft2(array)
-    X = _fftshift(X)
-    _multiply(X, filter, out=X)
-    X = _ifftshift(X)
-    x = _irfft2(X, s=array.shape)
+    X = fft.rfft2(array)
+    X = fft.fftshift(X)
+    numpy.multiply(X, filter, out=X)
+    X = fft.ifftshift(X)
+    x = fft.irfft2(X, s=array.shape)
     return x
 
 
@@ -59,7 +50,7 @@ def _lowpass(radius, array):
 def lowpass(img, radius):
     """Apply a 2D low-pass filter to an image array."""
     return image.map_to_channels(
-        partial(_lowpass, radius),
+        functools.partial(_lowpass, radius),
         lambda shape: shape,
         img,
     )
@@ -73,7 +64,7 @@ def _highpass(radius, array):
 def highpass(img, radius):
     """Apply a 2D high-pass filter to an image array."""
     return image.map_to_channels(
-        partial(_highpass, radius),
+        functools.partial(_highpass, radius),
         lambda shape: shape,
         img,
     )

@@ -4,8 +4,8 @@
 
 
 from cv2 import cv
-from numpy import asarray as _asarray
-from os.path import exists as _exists
+import numpy
+import os
 
 from . import np, utils
 
@@ -54,7 +54,7 @@ def _cv_to_array(im, dtype=None):
         arr_dtype = np._np_dtypes[_cv_depths[im.depth]]
     else:
         arr_dtype = np._np_dtypes[dtype]
-    arr = _asarray(arr_data, dtype=arr_dtype)
+    arr = numpy.asarray(arr_data, dtype=arr_dtype)
     arr.shape = arr_shape
     return arr
 
@@ -130,7 +130,7 @@ def get_frames(video_file=None,
         fps = cam_fps
 
     if video_file:
-        if not _exists(video_file):
+        if not os.path.exists(video_file):
             raise IOError(video_file)
         cap = cv.CaptureFromFile(video_file)
         if not cap:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from os.path import exists, splitext
-from random import randint
+import os
+import random
 
 
 def _depth(x, y, z=1):
@@ -26,15 +26,15 @@ def depth(array):
 
 def rand_filename(filename, ext=None):
     """Return a unique file name based on the given file name."""
-    file_name, file_ext = splitext(filename)
+    file_name, file_ext = os.path.splitext(filename)
     if ext is None:
         ext = file_ext
     while True:
         rand_file_name = file_name
         rand_file_name += '-'
-        rand_file_name += str(randint(0, 10000))
+        rand_file_name += str(random.randint(0, 10000))
         rand_file_name += ext
-        if not exists(rand_file_name):
+        if not os.path.exists(rand_file_name):
             break
     return rand_file_name
 

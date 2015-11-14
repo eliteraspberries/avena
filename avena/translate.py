@@ -3,8 +3,8 @@
 """Translation of image arrays."""
 
 
-from functools import partial
-from numpy import zeros as _zeros
+import functools
+import numpy
 
 from . import image
 
@@ -13,7 +13,7 @@ def _translate(coords, array):
     m, n = array.shape
     a, b = coords
     p, q = m - abs(a), n - abs(b)
-    z = _zeros((m, n), dtype=array.dtype)
+    z = numpy.zeros((m, n), dtype=array.dtype)
     i, j = max(0, a), max(0, b)
     dst = z[i:(i + p), j:(j + q)]
     i, j = max(0, -a), max(0, -b)
@@ -25,7 +25,7 @@ def _translate(coords, array):
 def translate(img, coords):
     """Translate an image array by the given coordinates."""
     return image.map_to_channels(
-        partial(_translate, coords),
+        functools.partial(_translate, coords),
         lambda shape: shape,
         img,
     )
