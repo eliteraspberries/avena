@@ -8,6 +8,7 @@ Usage:
     avena [options] filter (high|low) <radius> <image>...
     avena [options] flip (vertical|horizontal) <image>...
     avena [options] interp <factor> <image>...
+    avena [options] logistic <k> [<x0>] <image>...
     avena [options] tile [--periodic] (9) <image>...
     avena [options] translate [--] (<y> <x>) <image>...
     avena [options] xcor (<image> <image>)...
@@ -101,6 +102,17 @@ if __name__ == '__main__':
         for filename, img in zip(files, images):
             interp_img = interp.interp2(img, factor)
             print(image_save(interp_img, filename))
+
+    elif arguments['logistic']:
+
+        from avena import logistic
+
+        k = float(arguments['<k>'])
+        x0 = float(arguments.get('<x0>', None) or 0.5)
+
+        for filename, img in zip(files, images):
+            log_img = logistic.logistic(k, (0.0, 1.0), x0, img)
+            print(image_save(log_img, filename))
 
     elif arguments['tile']:
 
