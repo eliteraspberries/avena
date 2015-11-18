@@ -1,29 +1,28 @@
 #!/usr/bin/env python
 
-from numpy import all, allclose, array, dstack
-from os import remove
-from os.path import sep, split
+import numpy
+import os
 
 from .. import image, utils
 
 
 def test_get_channels():
-    x = array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
-    y = dstack((x, x, x))
+    x = numpy.array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
+    y = numpy.dstack((x, x, x))
     for z in image.get_channels(y):
-        assert all(z == x)
+        assert numpy.all(z == x)
 
 
 def test_read_save():
-    f = split(__file__)[0] + sep + 'drink.png'
+    f = os.path.split(__file__)[0] + os.path.sep + 'drink.png'
     x = image.read(f)
     tmp = utils.rand_filename(f)
     try:
         image.save(x, tmp)
         y = image.read(tmp)
-        assert allclose(x, y, rtol=1e-4, atol=1e-1)
+        assert numpy.allclose(x, y, rtol=1e-4, atol=1e-1)
     finally:
-        remove(tmp)
+        os.remove(tmp)
 
 
 if __name__ == '__main__':

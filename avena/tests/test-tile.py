@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-from numpy import all, array
+import numpy
 
 from .. import tile
 
 
 def test_tile9_periodic():
-    x = array([[1]])
-    y = array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
-    assert all(tile._tile9_periodic(x) == y)
+    x = numpy.array([[1]])
+    y = numpy.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    assert numpy.all(tile._tile9_periodic(x) == y)
 
 
 if __name__ == '__main__':
