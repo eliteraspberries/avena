@@ -5,7 +5,7 @@
 
 import numpy
 
-from . import flip, image
+from . import flip, map
 
 
 def _tile9_periodic_shape(shape):
@@ -42,7 +42,7 @@ def _tile9_periodic(array):
 
 def tile9_periodic(img):
     """Tile an image into a 3x3 periodic grid."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         _tile9_periodic,
         img,
     )

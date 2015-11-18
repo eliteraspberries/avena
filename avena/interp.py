@@ -7,7 +7,7 @@ import functools
 import numpy
 from numpy import fft
 
-from . import filter, image, tile
+from . import filter, map, tile
 
 
 def _interp2_shape(factor, shape):
@@ -47,7 +47,7 @@ def _interp2(factor, array):
 
 def interp2(img, factor):
     """Interpolate a 2D image array by a given factor."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         functools.partial(_interp2, factor),
         img,
     )

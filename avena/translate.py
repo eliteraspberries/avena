@@ -6,7 +6,7 @@
 import functools
 import numpy
 
-from . import image
+from . import map
 
 
 def _translate(coords, array):
@@ -24,7 +24,7 @@ def _translate(coords, array):
 
 def translate(img, coords):
     """Translate an image array by the given coordinates."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         functools.partial(_translate, coords),
         img,
     )

@@ -14,15 +14,6 @@ def test_get_channels():
         assert all(z == x)
 
 
-def test_map_to_channels():
-    def f(x):
-        return x + 1
-    x = array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
-    y = dstack((x, x, x))
-    z = image.map_to_channels(f, y)
-    assert all(z == y + 1)
-
-
 def test_read_save():
     f = split(__file__)[0] + sep + 'drink.png'
     x = image.read(f)

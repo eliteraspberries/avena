@@ -6,7 +6,7 @@
 import functools
 import numpy
 
-from . import image
+from . import map
 
 
 def _logistic(k, domain, center, array):
@@ -17,7 +17,7 @@ def _logistic(k, domain, center, array):
 
 def logistic(k, domain, center, img):
     """Apply the logistic function of degree k to an image array."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         functools.partial(_logistic, k, domain, center),
         img,
     )

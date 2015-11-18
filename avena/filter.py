@@ -7,7 +7,7 @@ import functools
 import numpy
 from numpy import fft
 
-from . import image
+from . import map
 
 
 def _low_pass_filter(shape, radius):
@@ -49,7 +49,7 @@ def _lowpass(radius, array):
 
 def lowpass(img, radius):
     """Apply a 2D low-pass filter to an image array."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         functools.partial(_lowpass, radius),
         img,
     )
@@ -62,7 +62,7 @@ def _highpass(radius, array):
 
 def highpass(img, radius):
     """Apply a 2D high-pass filter to an image array."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         functools.partial(_highpass, radius),
         lambda shape: shape,
         img,

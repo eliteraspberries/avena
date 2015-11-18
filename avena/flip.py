@@ -3,7 +3,7 @@
 """Vertical or horizontal flipping of image arrays."""
 
 
-from . import image
+from . import map
 
 
 def _flip_vertical(array):
@@ -12,7 +12,7 @@ def _flip_vertical(array):
 
 def flip_vertical(img):
     """Flip an image array vertically."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         _flip_vertical,
         img,
     )
@@ -24,7 +24,7 @@ def _flip_horizontal(array):
 
 def flip_horizontal(img):
     """Flip an image array horizontally."""
-    return image.map_to_channels(
+    return map.map_to_channels(
         _flip_horizontal,
         lambda shape: shape,
         img,

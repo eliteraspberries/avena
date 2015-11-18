@@ -4,6 +4,7 @@ __all__ = [
     'image',
     'interp',
     'logistic',
+    'map',
     'np',
     'tile',
     'translate',

@@ -26,16 +26,6 @@ def get_channels(img):
             yield img[:, :, i]
 
 
-def map_to_channels(func, img):
-    """Map a function onto the channels of an image array."""
-    channels = get_channels(img)
-    first = next(channels)
-    z = func(first)
-    for channel in channels:
-        z = numpy.dstack((z, func(channel)))
-    return z
-
-
 def read(filename):
     """Read an image file as an array."""
     img = Image.open(filename)
