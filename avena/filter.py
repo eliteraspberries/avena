@@ -64,7 +64,6 @@ def highpass(img, radius):
     """Apply a 2D high-pass filter to an image array."""
     return map.map_to_channels(
         functools.partial(_highpass, radius),
-        lambda shape: shape,
         img,
     )
 
