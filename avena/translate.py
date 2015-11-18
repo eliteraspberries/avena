@@ -26,7 +26,6 @@ def translate(img, coords):
     """Translate an image array by the given coordinates."""
     return image.map_to_channels(
         functools.partial(_translate, coords),
-        lambda shape: shape,
         img,
     )
 

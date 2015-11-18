@@ -51,7 +51,6 @@ def lowpass(img, radius):
     """Apply a 2D low-pass filter to an image array."""
     return image.map_to_channels(
         functools.partial(_lowpass, radius),
-        lambda shape: shape,
         img,
     )
 

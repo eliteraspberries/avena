@@ -26,17 +26,13 @@ def get_channels(img):
             yield img[:, :, i]
 
 
-def map_to_channels(func, shape_func, img):
+def map_to_channels(func, img):
     """Map a function onto the channels of an image array."""
-    d = utils.depth(img)
-    if d == 1:
-        return func(img)
-    m, n = shape_func(img.shape[:2])
-    z = numpy.empty((m, n, d), dtype=img.dtype)
-    for i, c in enumerate(get_channels(img)):
-        x = func(c)
-        p, q = x.shape
-        z[:p, :q, i] = x[:, :]
+    channels = get_channels(img)
+    first = next(channels)
+    z = func(first)
+    for channel in channels:
+        z = numpy.dstack((z, func(channel)))
     return z
 
 

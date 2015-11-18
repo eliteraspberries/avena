@@ -19,11 +19,7 @@ def test_map_to_channels():
         return x + 1
     x = array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
     y = dstack((x, x, x))
-    z = image.map_to_channels(
-        f,
-        lambda shape: shape,
-        y,
-    )
+    z = image.map_to_channels(f, y)
     assert all(z == y + 1)
 
 

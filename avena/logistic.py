@@ -19,7 +19,6 @@ def logistic(k, domain, center, img):
     """Apply the logistic function of degree k to an image array."""
     return image.map_to_channels(
         functools.partial(_logistic, k, domain, center),
-        lambda shape: shape,
         img,
     )
 

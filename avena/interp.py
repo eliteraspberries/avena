@@ -49,7 +49,6 @@ def interp2(img, factor):
     """Interpolate a 2D image array by a given factor."""
     return image.map_to_channels(
         partial(_interp2, factor),
-        lambda shape: _interp2_shape(factor, shape),
         img,
     )
 

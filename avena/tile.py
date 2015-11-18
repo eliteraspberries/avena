@@ -44,7 +44,6 @@ def tile9_periodic(img):
     """Tile an image into a 3x3 periodic grid."""
     return image.map_to_channels(
         _tile9_periodic,
-        _tile9_periodic_shape,
         img,
     )
 
