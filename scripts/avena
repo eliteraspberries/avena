@@ -167,6 +167,7 @@ if __name__ == '__main__':
             @window.event
             def on_key_press(symbol, modifiers):
                 if symbol == pyglet.window.key.Q:
+                    window.close()
                     pyglet.app.exit()
                     return True
             window.set_visible()
