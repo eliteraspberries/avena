@@ -152,11 +152,14 @@ if __name__ == '__main__':
         from avena import np
 
         format = 'RGB'
+
         for filename, img in zip(files, images):
+
             img = np.to_uint8(img)
             img = img[:, :, :3]
             height, width = img.shape[:2]
             pitch = width * 3 * -1
+
             img_data = pyglet.image.ImageData(
                 width=width,
                 height=height,
@@ -164,6 +167,7 @@ if __name__ == '__main__':
                 pitch=pitch,
                 data=img.tostring(),
             )
+
             window = pyglet.window.Window(
                 width=width,
                 height=height,
@@ -171,15 +175,18 @@ if __name__ == '__main__':
                 caption=filename,
                 visible=False,
             )
+
             @window.event
             def on_draw():
                 img_data.blit(0, 0)
+
             @window.event
             def on_key_press(symbol, modifiers):
                 if symbol == pyglet.window.key.Q:
                     window.close()
                     pyglet.app.exit()
                     return True
+
             window.set_visible()
             pyglet.app.run()
 
