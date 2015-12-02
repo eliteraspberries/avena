@@ -31,6 +31,14 @@ from __future__ import print_function
 
 from docopt import docopt
 import functools
+try:
+    from itertools import (
+        ifilter as filter,
+        imap as map,
+        izip as zip,
+    )
+except ImportError:
+    pass
 import os
 
 from avena import avena, image
@@ -46,7 +54,7 @@ if __name__ == '__main__':
     files = arguments['<image>']
     files = filter(os.path.abspath, files)
     files = filter(os.path.expanduser, files)
-    images = (image.read(i) for i in arguments['<image>'])
+    images = map(image.read, files)
 
     ext = arguments['--ext'] or '.png'
     random = False if arguments['--in-place'] else True
