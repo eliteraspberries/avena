@@ -12,6 +12,7 @@ Avena requires:
    Library <http://pythonware.com/products/pil/>`__ (PIL) or
    `Pillow <http://python-pillow.github.io/>`__;
 -  `NumPy <http://www.numpy.org/>`__;
+-  `pyglet <https://bitbucket.org/pyglet/pyglet>`__;
 -  and `docopt <http://docopt.org/>`__.
 
 Install Avena with `pip <https://pip.pypa.io/en/stable/>`__:

@@ -37,6 +37,7 @@ _requirements = [
     'docopt',
     'numpy',
     'Pillow',
+    'pyglet',
 ]
 
 _setup_args['install_requires'] = _requirements

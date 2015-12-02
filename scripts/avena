@@ -11,6 +11,7 @@ Usage:
     avena [options] logistic <k> [<x0>] <image>...
     avena [options] tile [--periodic] (9) <image>...
     avena [options] translate [--] (<y> <x>) <image>...
+    avena [options] view <image>...
     avena [options] xcor (<image> <image>)...
     avena -h | --help
     avena -v | --version
@@ -134,6 +135,42 @@ if __name__ == '__main__':
         for filename, img in zip(files, images):
             translated_img = translate.translate(img, (y, x))
             print(image_save(translated_img, filename))
+
+    elif arguments['view']:
+
+        import pyglet
+        from avena import np
+
+        format = 'RGB'
+        for filename, img in zip(files, images):
+            img = np.to_uint8(img)
+            img = img[:, :, :3]
+            height, width = img.shape[:2]
+            pitch = width * 3 * -1
+            img_data = pyglet.image.ImageData(
+                width=width,
+                height=height,
+                format=format,
+                pitch=pitch,
+                data=img.tostring(),
+            )
+            window = pyglet.window.Window(
+                width=width,
+                height=height,
+                resizable=False,
+                caption=filename,
+                visible=False,
+            )
+            @window.event
+            def on_draw():
+                img_data.blit(0, 0)
+            @window.event
+            def on_key_press(symbol, modifiers):
+                if symbol == pyglet.window.key.Q:
+                    pyglet.app.exit()
+                    return True
+            window.set_visible()
+            pyglet.app.run()
 
     elif arguments['xcor']:
 
