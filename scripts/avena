@@ -52,8 +52,9 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=long_version)
 
     files = arguments['<image>']
-    files = filter(os.path.abspath, files)
-    files = filter(os.path.expanduser, files)
+    files = list(map(os.path.expanduser, files))
+    files = list(map(os.path.abspath, files))
+    files = list(filter(os.path.exists, files))
     images = map(image.read, files)
 
     ext = arguments['--ext'] or '.png'
