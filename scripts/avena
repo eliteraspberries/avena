@@ -175,6 +175,7 @@ if __name__ == '__main__':
                 resizable=False,
                 caption=filename,
                 visible=False,
+                vsync=False,
             )
 
             @window.event
