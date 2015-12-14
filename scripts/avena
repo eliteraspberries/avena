@@ -179,6 +179,7 @@ if __name__ == '__main__':
 
             @window.event
             def on_draw():
+                window.clear()
                 img_data.blit(0, 0)
 
             @window.event
