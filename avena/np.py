@@ -35,8 +35,8 @@ def from_uint8(array):
 
 
 def to_uint8(array):
-    uint8_array = numpy.empty(array.shape, dtype=numpy.uint8)
-    numpy.around(array * 255, out=uint8_array)
+    float_array = numpy.around(array * 255.0)
+    uint8_array = float_array.astype(numpy.uint8)
     return uint8_array
 
 
