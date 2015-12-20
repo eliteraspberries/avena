@@ -30,9 +30,12 @@ def test_tile_view():
 
 
 def test_map_to_tiles():
+
     x = numpy.array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
+
     def f(a):
         return a + 1
+
     for shape in [(1, 1), (1, 3)]:
         y = numpy.array([[2, 3, 4], [3, 4, 5], [4, 5, 6]])
         z = map._map_to_tiles(shape, f, x)
