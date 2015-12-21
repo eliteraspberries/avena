@@ -22,6 +22,7 @@ Options:
     --in-place      Overwrite the file.
     --normalize     Normalize images before saving.
     --no-normalize  Save images without normalizing.
+    --tiled=<k>     Map on tiles of size (k, k).
     -h, --help      Print this help.
     -v, --version   Print version information.
 '''
@@ -110,9 +111,14 @@ if __name__ == '__main__':
         from avena import interp
 
         factor = float(arguments['<factor>'])
+        try:
+            k = int(arguments['--tiled'])
+            interp2 = functools.partial(interp.interp2, tiles=(k, k))
+        except:
+            interp2 = interp.interp2
 
         for filename, img in zip(files, images):
-            interp_img = interp.interp2(img, factor)
+            interp_img = interp2(img, factor)
             print(image_save(interp_img, filename))
 
     elif arguments['logistic']:

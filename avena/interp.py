@@ -45,12 +45,17 @@ def _interp2(factor, array):
     return z
 
 
-def interp2(img, factor):
+def interp2(img, factor, tiles=None):
     """Interpolate a 2D image array by a given factor."""
-    return map.map_to_channels(
-        functools.partial(_interp2, factor),
-        img,
-    )
+    if tiles:
+        __interp2 = functools.partial(
+            map._map_to_tiles,
+            tiles,
+            functools.partial(_interp2, factor),
+        )
+    else:
+        __interp2 = functools.partial(_interp2, factor)
+    return map.map_to_channels(__interp2, img)
 
 
 if '__main__' in __name__:
