@@ -23,5 +23,6 @@ Usage
         --in-place      Overwrite the file.
         --normalize     Normalize images before saving.
         --no-normalize  Save images without normalizing.
+        --tiled=<k>     Map on tiles of size (k, k).
         -h, --help      Print this help.
         -v, --version   Print version information.
