@@ -57,7 +57,8 @@ def _xcor2(array1, array2):
 
 def xcor2(array1, array2):
     """Compute the cross-correlation of two image arrays."""
-    z = numpy.ones(array1.shape[:2])
+    assert array1.dtype == array2.dtype
+    z = numpy.ones(array1.shape[:2], dtype=array1.dtype)
     channel_pairs = list(zip(
         image.get_channels(array1),
         image.get_channels(array2),
