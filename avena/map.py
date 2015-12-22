@@ -3,6 +3,10 @@
 """Map functions onto image arrays."""
 
 
+try:
+    from itertools import imap as map
+except ImportError:
+    from functools import reduce
 import numpy
 
 from . import image, np
@@ -10,11 +14,14 @@ from . import image, np
 
 def map_to_channels(func, img):
     """Map a function onto the channels of an image array."""
+
     channels = image.get_channels(img)
-    first = next(channels)
-    z = func(first)
-    for channel in channels:
-        z = numpy.dstack((z, func(channel)))
+    channels = map(func, channels)
+
+    def stack(x, y):
+        return numpy.dstack((x, y))
+
+    z = reduce(stack, channels)
     return z
 
 
