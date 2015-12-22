@@ -3,6 +3,10 @@
 """Cross-correlation of image arrays."""
 
 
+try:
+    from itertools import izip as zip
+except ImportError:
+    pass
 import numpy
 from numpy import fft
 
@@ -59,10 +63,10 @@ def xcor2(array1, array2):
     """Compute the cross-correlation of two image arrays."""
     assert array1.dtype == array2.dtype
     z = numpy.ones(array1.shape[:2], dtype=array1.dtype)
-    channel_pairs = list(zip(
+    channel_pairs = zip(
         image.get_channels(array1),
         image.get_channels(array2),
-    ))
+    )
     for (xi, yi) in channel_pairs:
         xcori = _xcor2(xi, yi)
         numpy.multiply(z, xcori, out=z)
