@@ -4,7 +4,7 @@
 
 
 __author__ = 'Mansour Moufid'
-__copyright__ = 'Copyright 2014, 2015, Mansour Moufid'
+__copyright__ = 'Copyright 2014-2016, Mansour Moufid'
 __license__ = 'ISC'
 __version__ = '1.7'
 __email__ = 'mansourmoufid@gmail.com'
